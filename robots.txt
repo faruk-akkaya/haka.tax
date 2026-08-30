@@ -1,0 +1,14 @@
+# ENTWURFSPHASE bis Vollzug (02.01.2027):
+# Diese Seite soll vorher NICHT in Suchmaschinen erscheinen.
+User-agent: *
+Disallow: /
+
+# ---------------------------------------------------------------
+# ZUM GO-LIVE: Die drei Zeilen oben löschen und stattdessen
+# die folgenden vier Zeilen aktivieren (# jeweils entfernen):
+#
+# User-agent: *
+# Allow: /
+#
+# Sitemap: https://haka.tax/sitemap.xml
+# ---------------------------------------------------------------
