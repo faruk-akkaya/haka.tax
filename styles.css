@@ -33,15 +33,18 @@
   --on-ink-muted:#B6ADBA;
   --on-accent:#FBEAF1;
 
-  /* Theme-Tokens: passen sich zwischen hell/dunkel an */
-  --paper:#F7F4EF;
+  /* Theme-Tokens: passen sich zwischen hell/dunkel an.
+     Bewusst neutral-kühl statt cremefarben/beige — näher an einer
+     Modemagazin-Website (Vogue, SSENSE: Weiß/Schwarz + ein Akzent)
+     als an einem warmen Craft-Papierton. */
+  --paper:#FAFAFA;
   --surface:#FFFFFF;
-  --surface-sunk:#EFEAE2;
+  --surface-sunk:#F1F1EF;
   --text:#15111A;
   --text-body:#4A4152;
   --text-muted:#8A8090;
-  --border:#E4DED2;
-  --border-strong:#D2C9B8;
+  --border:#E7E7E4;
+  --border-strong:#D6D6D2;
   --accent:#C4206E;
   --focus-ring:rgba(196,32,110,.35);
   --shadow-color:21,17,26;
