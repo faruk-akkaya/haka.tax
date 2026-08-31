@@ -12,13 +12,16 @@
   src:url('fonts/BricolageGrotesque-Variable.woff2') format('woff2');
   font-weight:200 800; font-style:normal; font-display:swap;
 }
-/* Bodoni Moda: die "Modemagazin"-Stimme der Seite. Bewusst auf einen
+/* Newsreader: die "Modemagazin"-Stimme der Seite. Bewusst auf einen
    einzigen Auftritt beschränkt (Zitate, Editorial-Statements, ein
-   Schmuckwort im Hero) statt flächendeckend eingesetzt. */
+   Schmuckwort im Hero) statt flächendeckend eingesetzt. Ein Didone wie
+   Bodoni sah zwar sehr "Vogue" aus, aber die extrem dünnen Haarlinien
+   verschwanden in Farbe auf Weiß fast komplett — Newsreader hat einen
+   deutlich gleichmäßigeren Strich und bleibt trotzdem redaktionell. */
 @font-face{
-  font-family:'Bodoni Moda';
-  src:url('fonts/BodoniModa-Italic.woff2') format('woff2');
-  font-weight:400 900; font-style:italic; font-display:swap;
+  font-family:'Newsreader';
+  src:url('fonts/Newsreader-Italic.woff2') format('woff2');
+  font-weight:400 700; font-style:italic; font-display:swap;
 }
 
 :root{
@@ -27,6 +30,9 @@
      Tinte-Fläche (Footer, dunkle Spreads) bleibt in beiden Modi dunkel. */
   --raspberry:#C4206E;
   --saffron:#ECA400;
+  --violet:#5B2A67;
+  --on-violet:#F3E9F1;
+  --on-violet-muted:#CBAECB;
   --ink:#15111A;
   --ink-soft:#241D2B;
   --on-ink:#F3EFE8;
@@ -266,15 +272,31 @@ section .container p.section-lead:last-child{margin-bottom:0;}
 }
 .cover-inner{position:relative;z-index:1;max-width:820px;}
 .cover h1{font-size:clamp(42px,7.2vw,96px);line-height:.98;margin:0 0 26px;}
-.cover h1 em{font-family:'Bodoni Moda',Georgia,serif;font-style:italic;font-weight:500;letter-spacing:-.01em;color:var(--accent);}
+.cover h1 em{font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:500;letter-spacing:-.01em;color:var(--accent);}
 .cover .lead{font-size:19px;line-height:1.55;color:var(--text-body);margin:0 0 36px;max-width:52ch;}
 .cover-cta{display:flex;gap:16px;flex-wrap:wrap;}
 
-.page-hero{padding:56px 24px 52px;border-bottom:1px solid var(--border);}
+.page-hero{position:relative;overflow:hidden;padding:56px 24px 52px;border-bottom:1px solid var(--border);}
+.page-hero > .container{position:relative;z-index:1;}
 .page-hero h1{font-size:clamp(34px,5.4vw,64px);margin:12px 0 14px;line-height:1;}
 .page-hero p{font-size:17px;max-width:60ch;color:var(--text-body);line-height:1.6;margin:0;}
 .page-hero.compact-hero{padding:48px 24px 40px;}
 .page-hero.compact-hero h1{font-size:32px;margin-top:8px;}
+
+/* Das HAKA-Wasserzeichen aus dem Hero taucht auf den Unterseiten wieder
+   auf, aber nie zweimal gleich: andere Stelle, anderer Ausschnitt,
+   anderer Buchstabe, damit es ein wiederkehrendes Motiv bleibt statt
+   einer stumpfen Kopie. Rein dekorativ, daher aria-hidden im Markup. */
+.mark-backdrop{
+  position:absolute;z-index:0;pointer-events:none;
+  font-weight:800;line-height:.8;letter-spacing:-.04em;
+  color:var(--text);opacity:.05;white-space:nowrap;
+}
+.mark-backdrop.-br{right:-2%;bottom:-22%;font-size:clamp(160px,24vw,320px);}
+.mark-backdrop.-tr{right:4%;top:-20%;font-size:clamp(130px,18vw,240px);}
+.mark-backdrop.-bl{left:-3%;bottom:-30%;font-size:clamp(170px,25vw,340px);}
+.mark-backdrop.-tl{left:-2%;top:-28%;font-size:clamp(140px,20vw,260px);}
+@media (max-width:640px){ .mark-backdrop{display:none;} }
 
 /* ---------- Vollflächige Spreads (Himbeer / Tinte) ---------- */
 .spread{padding:100px 24px;}
@@ -309,7 +331,7 @@ section .container p.section-lead:last-child{margin-bottom:0;}
 /* Große, selbstbewusste Statement-Typografie: ersetzt Fließtext-Absätze
    an den Stellen, an denen die Aussage selbst der Blickfang sein soll. */
 .stmt{
-  font-family:'Bodoni Moda',Georgia,serif;font-style:italic;font-weight:500;
+  font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:500;
   font-size:clamp(28px,4.6vw,50px);line-height:1.22;letter-spacing:-.01em;
   max-width:19ch;margin:0 0 30px;padding-bottom:.15em;
 }
@@ -317,7 +339,7 @@ section .container p.section-lead:last-child{margin-bottom:0;}
 /* Initiale: bewusst nur an einer einzigen Stelle der ganzen Seite
    eingesetzt (Startseite, Himbeer-Statement), nicht als Wiederholmuster. */
 .dropcap::first-letter{
-  font-family:'Bodoni Moda',Georgia,serif;font-style:italic;font-weight:600;
+  font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:600;
   float:left;font-size:3.6em;line-height:.78;padding:.05em .12em 0 0;color:inherit;
 }
 .spread .cta-btn{margin-top:8px;}
@@ -349,14 +371,30 @@ section .container p.section-lead:last-child{margin-bottom:0;}
 @media (max-width:560px){ .grid-4{grid-template-columns:1fr;} .haka-mark{grid-template-columns:repeat(2,1fr);} .haka-mark .cell{border-bottom:1px solid var(--border);} }
 
 /* Branchen-Index: redaktionelle Liste, erster Eintrag groß hervorgehoben */
+/* Alle fünf Zeilen gleichwertig (keine Branche ist "wichtiger") — die
+   Auszeichnung kommt aus echter Interaktion, nicht aus einer fest
+   eingebauten Bevorzugung der ersten Zeile. */
 .index-list{border-top:1px solid var(--border-strong);}
-.index-row{display:grid;grid-template-columns:80px 1fr;gap:28px;padding:32px 0;border-bottom:1px solid var(--border);align-items:baseline;}
-.index-row .num{font-size:15px;font-weight:800;color:var(--text-muted);font-variant-numeric:tabular-nums;line-height:1.4;}
-.index-row h3{font-size:22px;font-weight:800;margin:0 0 10px;letter-spacing:-.01em;}
+.index-row{
+  display:grid;grid-template-columns:80px 1fr;gap:28px;padding:30px 0;
+  border-bottom:1px solid var(--border);align-items:baseline;cursor:default;
+  transition:padding .3s cubic-bezier(.23,1,.32,1);
+}
+.index-row .num{
+  font-size:15px;font-weight:800;color:var(--accent);opacity:.55;
+  font-variant-numeric:tabular-nums;line-height:1.4;
+  transition:opacity .25s ease,transform .3s cubic-bezier(.23,1,.32,1);
+  display:inline-block;
+}
+.index-row h3{
+  font-size:22px;font-weight:800;margin:0 0 10px;letter-spacing:-.01em;
+  transition:transform .3s cubic-bezier(.23,1,.32,1),color .25s ease;
+  transform-origin:left center;
+}
 .index-row p{font-size:15.5px;line-height:1.6;color:var(--text-body);margin:0;max-width:60ch;}
-.index-row.featured{padding:40px 0 44px;}
-.index-row.featured .num{font-size:15px;color:var(--accent);}
-.index-row.featured h3{font-size:clamp(28px,3.6vw,40px);}
+.index-row:hover{padding:38px 0;}
+.index-row:hover .num{opacity:1;transform:scale(1.15);}
+.index-row:hover h3{color:var(--accent);transform:scale(1.045);}
 @media (max-width:640px){ .index-row{grid-template-columns:1fr;gap:8px;} .index-row .num{font-size:13px;} }
 
 .value-list{border-top:1px solid var(--border);}
@@ -412,15 +450,16 @@ form textarea{min-height:120px;resize:vertical;}
 .checkbox-row input{width:16px;height:16px;margin-top:2px;accent-color:var(--accent);}
 .form-note{font-size:13.5px;line-height:1.55;color:var(--text-body);margin:14px 0 0;}
 
-/* Fakten-Kasten statt Tinte-Kachel: eine kleine Nebeninfo (Öffnungszeiten,
-   Adresse) braucht keine vollflächige dunkle Fläche — das wirkte zu
-   schwer für ein Element dieser Größe. Editorial-Fact-Box stattdessen:
-   Papierfläche, eine Akzentlinie oben, eine Serifen-Überschrift. */
-.info-card{background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--accent);padding:32px;}
-.info-card h3{margin:0 0 4px;font-size:19px;color:var(--text);font-family:'Bodoni Moda',Georgia,serif;font-style:italic;font-weight:500;}
-.info-card .info-subtitle{margin:0 0 20px;font-size:12.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;}
-.info-card p{font-size:14px;line-height:1.7;color:var(--text-body);margin:0 0 18px;}
-.info-card .line{display:block;font-size:14.5px;margin-bottom:10px;color:var(--text);}
+/* Fakten-Kasten: eine kleine Nebeninfo (Öffnungszeiten, Adresse) braucht
+   keine vollflächige Tinte-Fläche in der Größe eines ganzen Spreads —
+   aber ein reines Papier-Kästchen war zu brav. Violett ist als eigene,
+   sparsam eingesetzte dritte Farbe hier genau richtig: klein, warm,
+   ein echter Farbmoment statt einer grauen Ecke. */
+.info-card{background:var(--violet);color:var(--on-violet);border-radius:2px;padding:32px;}
+.info-card h3{margin:0 0 4px;font-size:20px;color:#fff;font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:500;}
+.info-card .info-subtitle{margin:0 0 20px;font-size:12.5px;color:var(--on-violet-muted);text-transform:uppercase;letter-spacing:.05em;}
+.info-card p{font-size:14px;line-height:1.7;color:var(--on-violet-muted);margin:0 0 18px;}
+.info-card .line{display:block;font-size:14.5px;margin-bottom:10px;color:#fff;}
 @media (max-width:560px){ .info-card{padding:24px 22px;} }
 
 /* ---------- Footer ---------- */
