@@ -23,6 +23,14 @@
   src:url('fonts/Newsreader-Italic.woff2') format('woff2');
   font-weight:400 700; font-style:italic; font-display:swap;
 }
+/* Inter: ausschließlich für den Wortmarken-Schriftzug "haka.tax" neben
+   der Bildmarke, gemäß Logovorlage — bewusst neutraler/nüchterner als
+   das verspielte Bricolage der übrigen Seite. */
+@font-face{
+  font-family:'Inter';
+  src:url('fonts/Inter-Variable.woff2') format('woff2');
+  font-weight:400 800; font-style:normal; font-display:swap;
+}
 
 :root{
   /* Fixe Markenfarben — ändern sich NIE zwischen den Themes. "Tinte" ist
@@ -150,7 +158,7 @@ header.scrolled .logo{max-height:0;opacity:0;padding-bottom:0;margin-bottom:0;bo
 .logo .mark{width:22px;height:22px;display:inline-block;line-height:0;flex-shrink:0;}
 .logo .mark svg{width:100%;height:100%;display:block;transition:transform .4s cubic-bezier(.23,1,.32,1);}
 .logo:hover .mark svg{transform:rotate(90deg);}
-.wm{font-weight:800;letter-spacing:-0.02em;white-space:nowrap;}
+.wm{font-family:'Inter','Segoe UI',system-ui,-apple-system,Arial,sans-serif;font-weight:800;letter-spacing:-0.02em;white-space:nowrap;}
 .header-actions{margin-left:auto;}
 
 nav.main-nav{display:flex;gap:30px;font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;align-items:center;}
