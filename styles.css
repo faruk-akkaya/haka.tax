@@ -36,14 +36,15 @@
 
 :root{
   /* Fixe Markenfarben — ändern sich NIE zwischen den Themes. Direkt aus
-     der Bordeaux-Logovariante übernommen: Gold/Sand/Senf (die drei
-     wärmeren Kacheln) und Bordeaux (die vierte Kachel, jetzt Haupt-
-     akzent anstelle des früheren Himbeer/Violett). "Tinte" bleibt die
-     neutrale Doppelseiten-Dunkelfarbe (Footer, dunkle Spreads). */
+     der Bordeaux-Logovariante übernommen. Gold ist jetzt die Hauptfarbe
+     der Seite (große Flächen, Spreads, Info-Kachel); Bordeaux ist Rot
+     und bleibt bewusst auf Buttons, Tags und Textmarkierung beschränkt —
+     ein Eyecatcher, keine Flächenfarbe mehr. */
   --gold:#C9A227;
   --sand:#D9BE7A;
   --senf:#A9822E;
   --bordeaux:#6E1F3A;
+  --bordeaux-hover:#4E1629;
   --ink:#15111A;
   --ink-soft:#241D2B;
   --on-ink:#F3EFE8;
@@ -75,8 +76,13 @@
   --text-muted:#8A8090;
   --border:#E7E7E4;
   --border-strong:#D6D6D2;
-  --accent:#6E1F3A;
-  --focus-ring:rgba(110,31,58,.35);
+  /* Gold/Ocker ist die Hauptfarbe der Seite — Bordeaux bleibt Rot, tritt
+     aber nur noch punktuell als Eyecatcher auf (Buttons, Tags, Textmarkierung),
+     nicht mehr als Textfarbe oder große Fläche. --accent ist deshalb ein
+     dunkler, textfähiger Ockerton statt Bordeaux selbst (reines Gold hat
+     auf Weiß nur 2,3:1 Kontrast, das hier erreicht 5:1). */
+  --accent:#846A15;
+  --focus-ring:rgba(132,106,21,.35);
   --shadow-color:21,17,26;
 }
 
@@ -90,11 +96,10 @@
     --text-muted:#867C89;
     --border:#2E2733;
     --border-strong:#3D3541;
-    /* Aufgehelltes Bordeaux: reines Bordeaux (#6E1F3A) fällt auf fast
-       schwarz auf 1,7:1 Kontrast — für Text/Links im Dark Mode ein
-       hellerer Ton derselben Familie, analog zum früheren Himbeer-Tint. */
-    --accent:#DD6B8F;
-    --focus-ring:rgba(221,107,143,.4);
+    /* Helleres Gold für Text/Links im Dark Mode — derselbe dunkle
+       Ockerton wäre auf fast schwarz kaum lesbar. */
+    --accent:#DFBC49;
+    --focus-ring:rgba(223,188,73,.4);
     --shadow-color:0,0,0;
   }
 }
@@ -107,8 +112,8 @@
   --text-muted:#867C89;
   --border:#2E2733;
   --border-strong:#3D3541;
-  --accent:#DD6B8F;
-  --focus-ring:rgba(221,107,143,.4);
+  --accent:#DFBC49;
+  --focus-ring:rgba(223,188,73,.4);
   --shadow-color:0,0,0;
 }
 
@@ -255,12 +260,16 @@ nav.main-nav a:hover::after,nav.main-nav a.active::after{transform:scaleX(1);}
 }
 
 /* ---------- Buttons ---------- */
+/* Der Haupt-Button ist bewusst Bordeaux statt Tinte oder Gold: Rot ist
+   auf dieser Seite kein Flächenton mehr, sondern genau der Eyecatcher,
+   der einen klaren Call-to-Action aus einer sonst gold/warmen Seite
+   heraushebt. */
 .cta-btn{
-  background:var(--text);color:var(--paper);padding:13px 24px;border-radius:var(--radius-sm);
+  background:var(--bordeaux);color:var(--on-accent);padding:13px 24px;border-radius:var(--radius-sm);
   font-size:13.5px;font-weight:700;letter-spacing:.02em;white-space:nowrap;text-align:center;display:inline-block;
   transition:transform .16s cubic-bezier(.23,1,.32,1), box-shadow .2s ease, background-color .2s ease, color .2s ease;
 }
-.cta-btn:hover{background:var(--bordeaux);color:#fff;}
+.cta-btn:hover{background:var(--bordeaux-hover);color:#fff;}
 .cta-btn:active{transform:scale(.97);}
 .cta-btn.ghost{background:transparent;border:1.5px solid var(--border-strong);color:var(--text);}
 .cta-btn.ghost:hover{border-color:var(--accent);color:var(--accent);background:transparent;}
@@ -325,13 +334,19 @@ section .container p.section-lead:last-child{margin-bottom:0;}
 .mark-backdrop.-tl{left:-2%;top:-28%;font-size:clamp(140px,20vw,260px);}
 @media (max-width:640px){ .mark-backdrop{display:none;} }
 
-/* ---------- Vollflächige Spreads (Bordeaux / Tinte / Gold) ---------- */
+/* ---------- Vollflächige Spreads (Gold / Tinte) ---------- */
 .spread{padding:100px 24px;}
 @media (max-width:768px){ .spread{padding:64px 20px;} }
-.spread-accent{background:var(--bordeaux);color:var(--on-accent);}
-.spread-accent h2,.spread-accent .stmt{color:#fff;}
-.spread-accent .stmt-body{color:var(--on-accent);}
-.spread-accent .marker{background:#fff;}
+/* Gold ist die Hauptfarbe der Seite, deshalb der Ton für die große,
+   wiederkehrende Flächenfarbe (Hero-Statement, CTA-Bänder) — Bordeaux
+   bleibt Buttons und Tags vorbehalten. Gold ist hell, deshalb dunkler
+   Tinte-Text statt Weiß auf der Fläche. */
+.spread-accent{background:var(--gold);color:var(--ink);}
+.spread-accent h2,.spread-accent .stmt{color:var(--ink);}
+.spread-accent .stmt-body,.spread-accent p{color:var(--ink-soft);}
+.spread-accent .marker{background:var(--ink);}
+.spread-accent .stat-num{color:var(--ink);}
+.spread-accent .stat-label{color:var(--ink-soft);}
 .spread-ink{background:var(--ink);color:var(--on-ink);}
 .spread-ink h2,.spread-ink .stmt{color:var(--on-ink);}
 .spread-ink .stmt-body{color:var(--on-ink-muted);}
@@ -354,16 +369,6 @@ section .container p.section-lead:last-child{margin-bottom:0;}
 .spread-ink .job-card{border-color:rgba(243,239,232,.14);}
 .spread-ink .job-card h3{color:var(--on-ink);}
 .spread-ink .job-card .meta{color:var(--on-ink-muted);}
-
-/* Gold als echte dritte Spread-Farbe: ein einzelner, bewusst
-   platzierter Farbmoment statt eines dritten "Standard"-Tons. Gold ist
-   ein heller Ton, deshalb dunkler Tinte-Text statt Weiß auf der Fläche. */
-.spread-gold{background:var(--gold);color:var(--ink);}
-.spread-gold h2,.spread-gold .stmt{color:var(--ink);}
-.spread-gold .stmt-body,.spread-gold p{color:var(--ink-soft);}
-.spread-gold .marker{background:var(--ink);}
-.spread-gold .stat-num{color:var(--ink);}
-.spread-gold .stat-label{color:var(--ink-soft);}
 
 /* Große, selbstbewusste Statement-Typografie: ersetzt Fließtext-Absätze
    an den Stellen, an denen die Aussage selbst der Blickfang sein soll. */
@@ -497,13 +502,14 @@ form textarea{min-height:120px;resize:vertical;}
 
 /* Fakten-Kasten: eine kleine Nebeninfo (Öffnungszeiten, Adresse) braucht
    keine vollflächige Tinte-Fläche in der Größe eines ganzen Spreads —
-   aber ein reines Papier-Kästchen war zu brav. Bordeaux holt die Primärfarbe
-   hier in einen kleinen, sparsamen Farbmoment statt einer grauen Ecke. */
-.info-card{background:var(--bordeaux);color:var(--on-accent);border-radius:var(--radius-tile);padding:32px;}
-.info-card h3{margin:0 0 4px;font-size:20px;color:#fff;font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:500;}
-.info-card .info-subtitle{margin:0 0 20px;font-size:12.5px;color:var(--on-accent);text-transform:uppercase;letter-spacing:.05em;opacity:.85;}
-.info-card p{font-size:14px;line-height:1.7;color:var(--on-accent);margin:0 0 18px;opacity:.9;}
-.info-card .line{display:block;font-size:14.5px;margin-bottom:10px;color:#fff;}
+   aber ein reines Papier-Kästchen war zu brav. Gold holt die Hauptfarbe
+   hier in einen kleinen, sparsamen Farbmoment statt einer grauen Ecke;
+   Bordeaux bleibt den Buttons als Eyecatcher vorbehalten. */
+.info-card{background:var(--gold);color:var(--ink);border-radius:var(--radius-tile);padding:32px;}
+.info-card h3{margin:0 0 4px;font-size:20px;color:var(--ink);font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:500;}
+.info-card .info-subtitle{margin:0 0 20px;font-size:12.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em;opacity:.85;}
+.info-card p{font-size:14px;line-height:1.7;color:var(--ink-soft);margin:0 0 18px;opacity:.9;}
+.info-card .line{display:block;font-size:14.5px;margin-bottom:10px;color:var(--ink);}
 @media (max-width:560px){ .info-card{padding:24px 22px;} }
 
 /* ---------- Footer ---------- */
