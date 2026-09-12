@@ -1,11 +1,13 @@
 /* haka.tax — Editorial-Rebrand.
-   Zweiter Entwurf: kein Lila mehr als Flächenfarbe (nur noch Text auf
-   Papier oder Weiß auf Tinte), ein einziger lauter Akzent (Himbeer),
-   der an wenigen, dafür kompromisslosen Stellen als vollflächiger
-   Farbblock auftritt statt als Button-Farbe verwässert zu werden.
-   Die Seite wechselt bewusst zwischen drei "Blättern": Papier (hell),
-   Tinte (fast schwarz) und Himbeer (Farbblock) — wie Doppelseiten in
-   einem Magazin, nicht wie eine durchgehend weiße SaaS-Seite. */
+   Dritter Entwurf: Bordeaux-Logovariante. Ein einziger lauter Hauptakzent
+   (Bordeaux, vorher Himbeer), der an wenigen, dafür kompromisslosen
+   Stellen als vollflächiger Farbblock auftritt statt als Button-Farbe
+   verwässert zu werden — plus Gold/Sand/Senf als die drei wärmeren
+   Logokacheln für gezielte Zweitfarbmomente.
+   Die Seite wechselt bewusst zwischen mehreren "Blättern": Papier
+   (hell), Tinte (fast schwarz), Bordeaux und Gold (Farbblöcke) — wie
+   Doppelseiten in einem Magazin, nicht wie eine durchgehend weiße
+   SaaS-Seite. */
 
 @font-face{
   font-family:'Bricolage';
@@ -33,37 +35,33 @@
 }
 
 :root{
-  /* Fixe Markenfarben — ändern sich NIE zwischen den Themes. "Tinte" ist
-     eine Doppelseiten-Farbe wie Himbeer, kein Text-Token: eine
-     Tinte-Fläche (Footer, dunkle Spreads) bleibt in beiden Modi dunkel. */
-  --raspberry:#C4206E;
-  --saffron:#ECA400;
-  --violet:#5B2A67;
-  --on-violet:#F3E9F1;
-  --on-violet-muted:#CBAECB;
+  /* Fixe Markenfarben — ändern sich NIE zwischen den Themes. Direkt aus
+     der Bordeaux-Logovariante übernommen: Gold/Sand/Senf (die drei
+     wärmeren Kacheln) und Bordeaux (die vierte Kachel, jetzt Haupt-
+     akzent anstelle des früheren Himbeer/Violett). "Tinte" bleibt die
+     neutrale Doppelseiten-Dunkelfarbe (Footer, dunkle Spreads). */
+  --gold:#C9A227;
+  --sand:#D9BE7A;
+  --senf:#A9822E;
+  --bordeaux:#6E1F3A;
   --ink:#15111A;
   --ink-soft:#241D2B;
   --on-ink:#F3EFE8;
   --on-ink-muted:#B6ADBA;
   --on-accent:#FBEAF1;
-  /* Mauve: die vierte Logofarbe (bislang nur im Icon selbst). Als echte
-     Variable nutzbar für punktuelle Akzente, z. B. am Team-Card-Rand —
-     vier Partner, vier Logofarben. */
-  --mauve:#6B5464;
 
   /* Radius-Skala, abgeleitet aus der neuen Bildmarke: die vier Kacheln
      sind weich gerundet statt eckig, das darf sich im UI wiederfinden
      statt bei 2px Editorial-Schärfe zu bleiben. */
   --radius-sm:10px;
   --radius-md:18px;
-  /* Die Bildmarke rundet nie alle vier Ecken gleich, sondern genau eine
-     Diagonale (eine Ecke klein, die gegenüberliegende groß, die anderen
-     beiden bleiben scharf). Dieselbe Formel als wiederkehrende Form auf
-     den großen Blockflächen (Info-Kachel, Bildplatzhalter) statt eines
-     beliebigen eigenen Radius — das ist die eigentliche Klammer zwischen
-     Logo und Seite. */
-  --radius-tile: 26px 4px 42px 4px;
-  --radius-tile-sm: 14px 3px 24px 3px;
+  /* Jede Logokachel rundet exakt eine Diagonale — zwei gegenüberliegende
+     Ecken mit demselben Radius, die anderen beiden bleiben scharf.
+     Dieselbe Formel als wiederkehrende Form auf den großen Blockflächen
+     (Info-Kachel, Bildplatzhalter) statt eines beliebigen eigenen
+     Radius — das ist die eigentliche Klammer zwischen Logo und Seite. */
+  --radius-tile: 24px 4px 24px 4px;
+  --radius-tile-sm: 14px 3px 14px 3px;
 
   /* Theme-Tokens: passen sich zwischen hell/dunkel an.
      Bewusst neutral-kühl statt cremefarben/beige — näher an einer
@@ -77,8 +75,8 @@
   --text-muted:#8A8090;
   --border:#E7E7E4;
   --border-strong:#D6D6D2;
-  --accent:#C4206E;
-  --focus-ring:rgba(196,32,110,.35);
+  --accent:#6E1F3A;
+  --focus-ring:rgba(110,31,58,.35);
   --shadow-color:21,17,26;
 }
 
@@ -92,8 +90,11 @@
     --text-muted:#867C89;
     --border:#2E2733;
     --border-strong:#3D3541;
-    --accent:#F2669C;
-    --focus-ring:rgba(242,102,156,.4);
+    /* Aufgehelltes Bordeaux: reines Bordeaux (#6E1F3A) fällt auf fast
+       schwarz auf 1,7:1 Kontrast — für Text/Links im Dark Mode ein
+       hellerer Ton derselben Familie, analog zum früheren Himbeer-Tint. */
+    --accent:#DD6B8F;
+    --focus-ring:rgba(221,107,143,.4);
     --shadow-color:0,0,0;
   }
 }
@@ -106,8 +107,8 @@
   --text-muted:#867C89;
   --border:#2E2733;
   --border-strong:#3D3541;
-  --accent:#F2669C;
-  --focus-ring:rgba(242,102,156,.4);
+  --accent:#DD6B8F;
+  --focus-ring:rgba(221,107,143,.4);
   --shadow-color:0,0,0;
 }
 
@@ -130,8 +131,8 @@ h1,h2,h3{text-wrap:balance;font-weight:800;letter-spacing:-0.03em;margin:0;}
 p{margin:0;}
 .container{max-width:1180px;margin:0 auto;padding:0 24px;}
 
-::selection{background:var(--raspberry);color:#fff;}
-::-moz-selection{background:var(--raspberry);color:#fff;}
+::selection{background:var(--bordeaux);color:#fff;}
+::-moz-selection{background:var(--bordeaux);color:#fff;}
 
 a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{
   outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--radius-sm);
@@ -147,7 +148,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .transition-bar b{font-weight:700;}
 .badge-soon{
   display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;
-  text-transform:uppercase;color:#241A0A;background:var(--saffron);
+  text-transform:uppercase;color:#241A0A;background:var(--gold);
   padding:3px 10px;border-radius:999px;white-space:nowrap;
 }
 @media (max-width:520px){ .transition-bar{font-size:11.5px;padding:8px 14px;gap:8px;} }
@@ -259,14 +260,14 @@ nav.main-nav a:hover::after,nav.main-nav a.active::after{transform:scaleX(1);}
   font-size:13.5px;font-weight:700;letter-spacing:.02em;white-space:nowrap;text-align:center;display:inline-block;
   transition:transform .16s cubic-bezier(.23,1,.32,1), box-shadow .2s ease, background-color .2s ease, color .2s ease;
 }
-.cta-btn:hover{background:var(--raspberry);color:#fff;}
+.cta-btn:hover{background:var(--bordeaux);color:#fff;}
 .cta-btn:active{transform:scale(.97);}
 .cta-btn.ghost{background:transparent;border:1.5px solid var(--border-strong);color:var(--text);}
 .cta-btn.ghost:hover{border-color:var(--accent);color:var(--accent);background:transparent;}
-.cta-btn.on-ink{background:var(--raspberry);color:#fff;}
+.cta-btn.on-ink{background:var(--bordeaux);color:#fff;}
 .cta-btn.on-ink:hover{background:var(--on-ink);color:var(--ink);}
 .cta-btn.on-accent{background:var(--ink);color:var(--on-ink);}
-.cta-btn.on-accent:hover{background:#fff;color:var(--raspberry);}
+.cta-btn.on-accent:hover{background:#fff;color:var(--bordeaux);}
 .cta-btn.ghost.on-dark{color:var(--on-ink);border-color:rgba(243,239,232,.4);}
 .cta-btn.ghost.on-dark:hover{border-color:#fff;color:#fff;}
 button.cta-btn{border:none;cursor:pointer;font-family:inherit;}
@@ -324,10 +325,10 @@ section .container p.section-lead:last-child{margin-bottom:0;}
 .mark-backdrop.-tl{left:-2%;top:-28%;font-size:clamp(140px,20vw,260px);}
 @media (max-width:640px){ .mark-backdrop{display:none;} }
 
-/* ---------- Vollflächige Spreads (Himbeer / Tinte) ---------- */
+/* ---------- Vollflächige Spreads (Bordeaux / Tinte / Gold) ---------- */
 .spread{padding:100px 24px;}
 @media (max-width:768px){ .spread{padding:64px 20px;} }
-.spread-accent{background:var(--raspberry);color:var(--on-accent);}
+.spread-accent{background:var(--bordeaux);color:var(--on-accent);}
 .spread-accent h2,.spread-accent .stmt{color:#fff;}
 .spread-accent .stmt-body{color:var(--on-accent);}
 .spread-accent .marker{background:#fff;}
@@ -354,14 +355,15 @@ section .container p.section-lead:last-child{margin-bottom:0;}
 .spread-ink .job-card h3{color:var(--on-ink);}
 .spread-ink .job-card .meta{color:var(--on-ink-muted);}
 
-/* Violett als echte dritte Spread-Farbe: ein einzelner, bewusst
-   platzierter Farbmoment statt eines dritten "Standard"-Tons. */
-.spread-violet{background:var(--violet);color:var(--on-violet);}
-.spread-violet h2,.spread-violet .stmt{color:#fff;}
-.spread-violet .stmt-body,.spread-violet p{color:var(--on-violet-muted);}
-.spread-violet .marker{background:#fff;}
-.spread-violet .stat-num{color:#fff;}
-.spread-violet .stat-label{color:var(--on-violet-muted);}
+/* Gold als echte dritte Spread-Farbe: ein einzelner, bewusst
+   platzierter Farbmoment statt eines dritten "Standard"-Tons. Gold ist
+   ein heller Ton, deshalb dunkler Tinte-Text statt Weiß auf der Fläche. */
+.spread-gold{background:var(--gold);color:var(--ink);}
+.spread-gold h2,.spread-gold .stmt{color:var(--ink);}
+.spread-gold .stmt-body,.spread-gold p{color:var(--ink-soft);}
+.spread-gold .marker{background:var(--ink);}
+.spread-gold .stat-num{color:var(--ink);}
+.spread-gold .stat-label{color:var(--ink-soft);}
 
 /* Große, selbstbewusste Statement-Typografie: ersetzt Fließtext-Absätze
    an den Stellen, an denen die Aussage selbst der Blickfang sein soll. */
@@ -372,7 +374,7 @@ section .container p.section-lead:last-child{margin-bottom:0;}
 }
 .stmt-body{font-size:17px;line-height:1.65;max-width:56ch;color:var(--text-body);}
 /* Initiale: bewusst nur an einer einzigen Stelle der ganzen Seite
-   eingesetzt (Startseite, Himbeer-Statement), nicht als Wiederholmuster. */
+   eingesetzt (Startseite, Bordeaux-Statement), nicht als Wiederholmuster. */
 .dropcap::first-letter{
   font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:600;
   float:left;font-size:3.6em;line-height:.78;padding:.05em .12em 0 0;color:inherit;
@@ -438,19 +440,19 @@ section .container p.section-lead:last-child{margin-bottom:0;}
 .value-row p{font-size:14.5px;line-height:1.6;color:var(--text-body);margin:0;max-width:60ch;}
 @media (max-width:640px){ .value-row{grid-template-columns:1fr;gap:4px;} }
 
-.tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--on-accent);background:var(--raspberry);padding:6px 12px;border-radius:999px;margin-bottom:14px;}
+.tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--on-accent);background:var(--bordeaux);padding:6px 12px;border-radius:999px;margin-bottom:14px;}
 .tag.outline{background:none;color:var(--accent);border:1.5px solid var(--accent);}
-.tag.violet{background:var(--violet);color:var(--on-violet);}
+.tag.gold{background:var(--gold);color:var(--ink);}
 
 /* Team */
 /* Vier Partner, vier Logofarben: statt eines einheitlichen grauen Randes
    trägt jede Karte oben den Farbton der jeweiligen Kachel aus der
-   Bildmarke — dieselbe Reihenfolge wie im Icon (Himbeer, Violett,
-   Safran, Mauve), nicht zufällig gewählt. */
-.person{border:1px solid var(--border);border-top:4px solid var(--raspberry);border-radius:var(--radius-md);overflow:hidden;background:var(--surface);}
-.person:nth-of-type(2){border-top-color:var(--violet);}
-.person:nth-of-type(3){border-top-color:var(--saffron);}
-.person:nth-of-type(4){border-top-color:var(--mauve);}
+   Bildmarke — dieselbe Reihenfolge wie im Icon (Gold, Sand, Senf,
+   Bordeaux), nicht zufällig gewählt. */
+.person{border:1px solid var(--border);border-top:4px solid var(--gold);border-radius:var(--radius-md);overflow:hidden;background:var(--surface);}
+.person:nth-of-type(2){border-top-color:var(--sand);}
+.person:nth-of-type(3){border-top-color:var(--senf);}
+.person:nth-of-type(4){border-top-color:var(--bordeaux);}
 .person .p-body{padding:22px 22px 26px;}
 .person h3{margin:0 0 4px;font-size:16.5px;font-weight:800;}
 .person .role{font-size:12.5px;color:var(--accent);font-weight:700;margin-bottom:10px;}
@@ -495,9 +497,9 @@ form textarea{min-height:120px;resize:vertical;}
 
 /* Fakten-Kasten: eine kleine Nebeninfo (Öffnungszeiten, Adresse) braucht
    keine vollflächige Tinte-Fläche in der Größe eines ganzen Spreads —
-   aber ein reines Papier-Kästchen war zu brav. Himbeer holt die Primärfarbe
+   aber ein reines Papier-Kästchen war zu brav. Bordeaux holt die Primärfarbe
    hier in einen kleinen, sparsamen Farbmoment statt einer grauen Ecke. */
-.info-card{background:var(--raspberry);color:var(--on-accent);border-radius:var(--radius-tile);padding:32px;}
+.info-card{background:var(--bordeaux);color:var(--on-accent);border-radius:var(--radius-tile);padding:32px;}
 .info-card h3{margin:0 0 4px;font-size:20px;color:#fff;font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:500;}
 .info-card .info-subtitle{margin:0 0 20px;font-size:12.5px;color:var(--on-accent);text-transform:uppercase;letter-spacing:.05em;opacity:.85;}
 .info-card p{font-size:14px;line-height:1.7;color:var(--on-accent);margin:0 0 18px;opacity:.9;}
@@ -552,9 +554,9 @@ footer{background:var(--ink);color:var(--on-ink);padding:64px 24px 0;margin-top:
 .legal-content h2:first-child{margin-top:0;}
 .legal-content p,.legal-content li{font-size:14.5px;line-height:1.7;color:var(--text-body);margin:0 0 12px;}
 .legal-content ul{padding-left:20px;}
-.legal-content .fill{background:rgba(236,164,0,.18);padding:1px 6px;border-radius:var(--radius-sm);color:#8a6300;font-weight:600;}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .legal-content .fill{color:#F5D98C;}}
-:root[data-theme="dark"] .legal-content .fill{color:#F5D98C;}
+.legal-content .fill{background:rgba(169,130,46,.18);padding:1px 6px;border-radius:var(--radius-sm);color:#6B4A12;font-weight:600;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .legal-content .fill{color:var(--sand);}}
+:root[data-theme="dark"] .legal-content .fill{color:var(--sand);}
 .legal-content a{color:var(--accent);text-decoration:underline;}
 .lang-notice{color:var(--text-muted);font-style:italic;font-size:13.5px;line-height:1.6;border-left:2px solid var(--border-strong);padding-left:14px;margin:0 0 28px;}
 .lang-notice a{color:var(--accent);text-decoration:underline;font-style:normal;}
