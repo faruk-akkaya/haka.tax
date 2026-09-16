@@ -1,13 +1,12 @@
 /* haka.tax — Editorial-Rebrand.
-   Dritter Entwurf: Bordeaux-Logovariante. Ein einziger lauter Hauptakzent
-   (Bordeaux, vorher Himbeer), der an wenigen, dafür kompromisslosen
-   Stellen als vollflächiger Farbblock auftritt statt als Button-Farbe
-   verwässert zu werden — plus Gold/Sand/Senf als die drei wärmeren
-   Logokacheln für gezielte Zweitfarbmomente.
-   Die Seite wechselt bewusst zwischen mehreren "Blättern": Papier
-   (hell), Tinte (fast schwarz), Bordeaux und Gold (Farbblöcke) — wie
-   Doppelseiten in einem Magazin, nicht wie eine durchgehend weiße
-   SaaS-Seite. */
+   Vierte Fassung: offizielles Markensystem (haka-tax-logo/PROMPT-
+   Markenumstellung.md). Himbeere ist die Hauptfarbe (Primär-Buttons,
+   Links, Überschriften-Akzent). Wein ist ihre Zweitfarbe: Hover/Aktiv
+   von Himbeere UND die Farbe der dunklen Flächen (Footer, dunkle
+   Spreads) — ersetzt das frühere neutrale Tinte-Schwarz dort. Gold ist
+   reiner Akzent (Badges, Icons, Hervorhebungen), nie Fläche für
+   Fließtext — Gold auf Weiß verfehlt WCAG AA als Textfarbe. Warmgrau
+   (Graualt) ist die ruhige Sekundärfarbe für Linien und Meta-Text. */
 
 @font-face{
   font-family:'Bricolage';
@@ -35,85 +34,75 @@
 }
 
 :root{
-  /* Fixe Markenfarben — ändern sich NIE zwischen den Themes. Direkt aus
-     der Bordeaux-Logovariante übernommen. Gold ist jetzt die Hauptfarbe
-     der Seite (große Flächen, Spreads, Info-Kachel); Bordeaux ist Rot
-     und bleibt bewusst auf Buttons, Tags und Textmarkierung beschränkt —
-     ein Eyecatcher, keine Flächenfarbe mehr. */
-  --gold:#C9A227;
-  --sand:#D9BE7A;
-  --senf:#A9822E;
-  --bordeaux:#6E1F3A;
-  --bordeaux-hover:#4E1629;
-  --ink:#15111A;
-  --ink-soft:#241D2B;
-  --on-ink:#F3EFE8;
-  --on-ink-muted:#B6ADBA;
-  --on-accent:#FBEAF1;
+  /* Fixe Markenfarben — direkt aus dem offiziellen Signet, ändern sich
+     NIE zwischen den Themes (wie die Logofarben selbst auch nicht). */
+  --gold:#D9A441;
+  --graualt:#8B7D85;
+  --himbeere:#9B1E52;
+  --wein:#5A1230;
+  --on-himbeere:#FBEAF1;
+  --on-himbeere-muted:#E7C1D1;
+  --on-wein:#F0ECE1;
+  --on-wein-muted:#C3ABAC;
+  --on-gold:#211E19;
 
   /* Radius-Skala, abgeleitet aus der neuen Bildmarke: die vier Kacheln
      sind weich gerundet statt eckig, das darf sich im UI wiederfinden
      statt bei 2px Editorial-Schärfe zu bleiben. */
   --radius-sm:10px;
   --radius-md:18px;
-  /* Jede Logokachel rundet exakt eine Diagonale — zwei gegenüberliegende
-     Ecken mit demselben Radius, die anderen beiden bleiben scharf.
-     Dieselbe Formel als wiederkehrende Form auf den großen Blockflächen
-     (Info-Kachel, Bildplatzhalter) statt eines beliebigen eigenen
-     Radius — das ist die eigentliche Klammer zwischen Logo und Seite. */
+  /* Jede Logokachel rundet ihre äußere Ecke, die innere ist gefast statt
+     rechtwinklig — dieselbe Formel (eine große, eine kleine gefaste
+     Ecke) als wiederkehrende Form auf großen Blockflächen (Info-Kachel,
+     Bildplatzhalter) statt eines beliebigen eigenen Radius. */
   --radius-tile: 24px 4px 24px 4px;
   --radius-tile-sm: 14px 3px 14px 3px;
 
-  /* Theme-Tokens: passen sich zwischen hell/dunkel an.
-     Bewusst neutral-kühl statt cremefarben/beige — näher an einer
-     Modemagazin-Website (Vogue, SSENSE: Weiß/Schwarz + ein Akzent)
-     als an einem warmen Craft-Papierton. */
-  --paper:#FAFAFA;
-  --surface:#FFFFFF;
-  --surface-sunk:#F1F1EF;
-  --text:#15111A;
-  --text-body:#4A4152;
-  --text-muted:#8A8090;
-  --border:#E7E7E4;
-  --border-strong:#D6D6D2;
-  /* Gold/Ocker ist die Hauptfarbe der Seite — Bordeaux bleibt Rot, tritt
-     aber nur noch punktuell als Eyecatcher auf (Buttons, Tags, Textmarkierung),
-     nicht mehr als Textfarbe oder große Fläche. --accent ist deshalb ein
-     dunkler, textfähiger Ockerton statt Bordeaux selbst (reines Gold hat
-     auf Weiß nur 2,3:1 Kontrast, das hier erreicht 5:1). */
-  --accent:#846A15;
-  --focus-ring:rgba(132,106,21,.35);
-  --shadow-color:21,17,26;
+  /* Theme-Tokens: passen sich zwischen hell/dunkel an. Tinte/Papier/
+     Papier-2 aus dem Markensystem — warmes Creme statt kühlem Grau. */
+  --paper:#FFFFFF;
+  --surface:#F2EFE7;
+  --surface-sunk:#EDE9DE;
+  --text:#211E19;
+  --text-body:#6F6D6A;
+  --text-muted:#8C8A87;
+  --border:#E4E4E3;
+  --border-strong:#CECECC;
+  /* --accent ist Himbeere selbst (Hauptfarbe: Buttons, Links,
+     Überschriften-Akzent). Im Dark Mode ein leicht aufgehellter
+     Himbeere-Ton für Textkontrast — die reine Dark-Grund-Logofarbe
+     (#C43A72) läge auf Papier-Dunkel nur bei 3,6:1. */
+  --accent:#9B1E52;
+  --focus-ring:rgba(155,30,82,.35);
+  --shadow-color:33,30,25;
 }
 
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --paper:#121016;
-    --surface:#1B1720;
-    --surface-sunk:#221D28;
-    --text:#F3EFE8;
-    --text-body:#C7BFC9;
-    --text-muted:#867C89;
-    --border:#2E2733;
-    --border-strong:#3D3541;
-    /* Helleres Gold für Text/Links im Dark Mode — derselbe dunkle
-       Ockerton wäre auf fast schwarz kaum lesbar. */
-    --accent:#DFBC49;
-    --focus-ring:rgba(223,188,73,.4);
+    --paper:#1B1714;
+    --surface:#272219;
+    --surface-sunk:#2E2820;
+    --text:#F0ECE1;
+    --text-body:#B4B0A8;
+    --text-muted:#97938B;
+    --border:#3B3733;
+    --border-strong:#504C47;
+    --accent:#CF5D8B;
+    --focus-ring:rgba(207,93,139,.4);
     --shadow-color:0,0,0;
   }
 }
 :root[data-theme="dark"]{
-  --paper:#121016;
-  --surface:#1B1720;
-  --surface-sunk:#221D28;
-  --text:#F3EFE8;
-  --text-body:#C7BFC9;
-  --text-muted:#867C89;
-  --border:#2E2733;
-  --border-strong:#3D3541;
-  --accent:#DFBC49;
-  --focus-ring:rgba(223,188,73,.4);
+  --paper:#1B1714;
+  --surface:#272219;
+  --surface-sunk:#2E2820;
+  --text:#F0ECE1;
+  --text-body:#B4B0A8;
+  --text-muted:#97938B;
+  --border:#3B3733;
+  --border-strong:#504C47;
+  --accent:#CF5D8B;
+  --focus-ring:rgba(207,93,139,.4);
   --shadow-color:0,0,0;
 }
 
@@ -136,8 +125,8 @@ h1,h2,h3{text-wrap:balance;font-weight:800;letter-spacing:-0.03em;margin:0;}
 p{margin:0;}
 .container{max-width:1180px;margin:0 auto;padding:0 24px;}
 
-::selection{background:var(--bordeaux);color:#fff;}
-::-moz-selection{background:var(--bordeaux);color:#fff;}
+::selection{background:var(--himbeere);color:#fff;}
+::-moz-selection{background:var(--himbeere);color:#fff;}
 
 a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{
   outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--radius-sm);
@@ -145,7 +134,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 
 /* ---------- Übergangs-Banner ---------- */
 .transition-bar{
-  background:var(--ink);color:var(--on-ink);
+  background:var(--wein);color:var(--on-wein);
   font-size:12.5px;line-height:1.45;text-align:center;
   padding:9px 20px;
   display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;
@@ -182,7 +171,18 @@ header.scrolled .logo{max-height:0;opacity:0;padding-bottom:0;margin-bottom:0;bo
 .logo .mark{width:22px;height:22px;display:inline-block;line-height:0;flex-shrink:0;}
 .logo .mark svg{width:100%;height:100%;display:block;transition:transform .4s cubic-bezier(.23,1,.32,1);}
 .logo:hover .mark svg{transform:rotate(90deg);}
-.wm{font-family:'Inter','Segoe UI',system-ui,-apple-system,Arial,sans-serif;font-weight:800;letter-spacing:-0.02em;white-space:nowrap;}
+/* Header-Grund wechselt mit dem Theme (Papier hell/dunkel) — deshalb hier,
+   anders als im immer dunklen Footer, zwei Signet-Fassungen, die genau wie
+   das Sonne/Mond-Icon des Theme-Togglers umgeschaltet werden. Die helle
+   Fassung gehört nie auf dunklen Grund und umgekehrt. */
+.logo .mark .mark-dark{display:none;}
+:root[data-theme="dark"] .logo .mark .mark-light{display:none;}
+:root[data-theme="dark"] .logo .mark .mark-dark{display:block;}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .logo .mark .mark-light{display:none;}
+  :root:not([data-theme="light"]) .logo .mark .mark-dark{display:block;}
+}
+.wm{font-family:'Inter','Segoe UI',system-ui,-apple-system,Arial,sans-serif;font-weight:600;letter-spacing:-0.01em;white-space:nowrap;}
 .header-actions{margin-left:auto;}
 
 nav.main-nav{display:flex;gap:30px;font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;align-items:center;}
@@ -265,19 +265,19 @@ nav.main-nav a:hover::after,nav.main-nav a.active::after{transform:scaleX(1);}
    der einen klaren Call-to-Action aus einer sonst gold/warmen Seite
    heraushebt. */
 .cta-btn{
-  background:var(--bordeaux);color:var(--on-accent);padding:13px 24px;border-radius:var(--radius-sm);
+  background:var(--himbeere);color:var(--on-himbeere);padding:13px 24px;border-radius:var(--radius-sm);
   font-size:13.5px;font-weight:700;letter-spacing:.02em;white-space:nowrap;text-align:center;display:inline-block;
   transition:transform .16s cubic-bezier(.23,1,.32,1), box-shadow .2s ease, background-color .2s ease, color .2s ease;
 }
-.cta-btn:hover{background:var(--bordeaux-hover);color:#fff;}
+.cta-btn:hover{background:var(--wein);color:#fff;}
 .cta-btn:active{transform:scale(.97);}
 .cta-btn.ghost{background:transparent;border:1.5px solid var(--border-strong);color:var(--text);}
 .cta-btn.ghost:hover{border-color:var(--accent);color:var(--accent);background:transparent;}
-.cta-btn.on-ink{background:var(--bordeaux);color:#fff;}
-.cta-btn.on-ink:hover{background:var(--on-ink);color:var(--ink);}
-.cta-btn.on-accent{background:var(--ink);color:var(--on-ink);}
-.cta-btn.on-accent:hover{background:#fff;color:var(--bordeaux);}
-.cta-btn.ghost.on-dark{color:var(--on-ink);border-color:rgba(243,239,232,.4);}
+.cta-btn.on-ink{background:var(--himbeere);color:#fff;}
+.cta-btn.on-ink:hover{background:var(--on-wein);color:var(--wein);}
+.cta-btn.on-accent{background:var(--on-himbeere);color:var(--himbeere);}
+.cta-btn.on-accent:hover{background:var(--wein);color:#fff;}
+.cta-btn.ghost.on-dark{color:var(--on-wein);border-color:rgba(240,236,225,.4);}
 .cta-btn.ghost.on-dark:hover{border-color:#fff;color:#fff;}
 button.cta-btn{border:none;cursor:pointer;font-family:inherit;}
 
@@ -337,38 +337,38 @@ section .container p.section-lead:last-child{margin-bottom:0;}
 /* ---------- Vollflächige Spreads (Gold / Tinte) ---------- */
 .spread{padding:100px 24px;}
 @media (max-width:768px){ .spread{padding:64px 20px;} }
-/* Gold ist die Hauptfarbe der Seite, deshalb der Ton für die große,
-   wiederkehrende Flächenfarbe (Hero-Statement, CTA-Bänder) — Bordeaux
-   bleibt Buttons und Tags vorbehalten. Gold ist hell, deshalb dunkler
-   Tinte-Text statt Weiß auf der Fläche. */
-.spread-accent{background:var(--gold);color:var(--ink);}
-.spread-accent h2,.spread-accent .stmt{color:var(--ink);}
-.spread-accent .stmt-body,.spread-accent p{color:var(--ink-soft);}
-.spread-accent .marker{background:var(--ink);}
-.spread-accent .stat-num{color:var(--ink);}
-.spread-accent .stat-label{color:var(--ink-soft);}
-.spread-ink{background:var(--ink);color:var(--on-ink);}
-.spread-ink h2,.spread-ink .stmt{color:var(--on-ink);}
-.spread-ink .stmt-body{color:var(--on-ink-muted);}
-.spread-ink .marker{background:var(--accent);}
-.spread-ink .text-muted-on-ink,.spread-ink p{color:var(--on-ink-muted);}
-/* Auf der Tinte-Fläche keine Boxen: eine Akzentlinie oben plus Abstand
+/* Himbeere ist die Hauptfarbe der Seite, deshalb der Ton für die große,
+   wiederkehrende Flächenfarbe (Hero-Statement, CTA-Bänder). Gold bleibt
+   reiner Akzent und trägt keinen Fließtext — hier heller Text auf der
+   dunkleren Himbeere-Fläche statt Gold-Fläche mit dunklem Text. */
+.spread-accent{background:var(--himbeere);color:var(--on-himbeere);}
+.spread-accent h2,.spread-accent .stmt{color:var(--on-himbeere);}
+.spread-accent .stmt-body,.spread-accent p{color:var(--on-himbeere-muted);}
+.spread-accent .marker{background:var(--on-himbeere);}
+.spread-accent .stat-num{color:var(--on-himbeere);}
+.spread-accent .stat-label{color:var(--on-himbeere-muted);}
+.spread-ink{background:var(--wein);color:var(--on-wein);}
+.spread-ink h2,.spread-ink .stmt{color:var(--on-wein);}
+.spread-ink .stmt-body{color:var(--on-wein-muted);}
+.spread-ink .marker{background:var(--gold);}
+.spread-ink .text-muted-on-ink,.spread-ink p{color:var(--on-wein-muted);}
+/* Auf der Wein-Fläche keine Boxen: eine Akzentlinie oben plus Abstand
    trägt die Struktur, wirkt redaktioneller als Karten auf Dunkel. */
-.spread-ink .card{background:none;border:none;border-top:2px solid var(--accent);border-radius:0;padding:22px 0 0;}
+.spread-ink .card{background:none;border:none;border-top:2px solid var(--gold);border-radius:0;padding:22px 0 0;}
 .spread-ink .card:hover{transform:none;}
-.spread-ink .card h3{color:var(--on-ink);}
-.spread-ink .card p{color:var(--on-ink-muted);}
-.spread-ink .value-row{border-color:rgba(243,239,232,.12);}
-.spread-ink .value-row h3{color:var(--on-ink);}
-.spread-ink .value-row p{color:var(--on-ink-muted);}
-.spread-ink .source-note{color:var(--on-ink-muted);opacity:.7;}
-.spread-ink .stat-num{color:var(--on-ink);}
-.spread-ink .stat-label{color:var(--on-ink-muted);}
-.spread-ink .note{border-left-color:var(--accent);}
-.spread-ink .note p{color:var(--on-ink-muted);}
-.spread-ink .job-card{border-color:rgba(243,239,232,.14);}
-.spread-ink .job-card h3{color:var(--on-ink);}
-.spread-ink .job-card .meta{color:var(--on-ink-muted);}
+.spread-ink .card h3{color:var(--on-wein);}
+.spread-ink .card p{color:var(--on-wein-muted);}
+.spread-ink .value-row{border-color:rgba(240,236,225,.12);}
+.spread-ink .value-row h3{color:var(--on-wein);}
+.spread-ink .value-row p{color:var(--on-wein-muted);}
+.spread-ink .source-note{color:var(--on-wein-muted);}
+.spread-ink .stat-num{color:var(--on-wein);}
+.spread-ink .stat-label{color:var(--on-wein-muted);}
+.spread-ink .note{border-left-color:var(--gold);}
+.spread-ink .note p{color:var(--on-wein-muted);}
+.spread-ink .job-card{border-color:rgba(240,236,225,.14);}
+.spread-ink .job-card h3{color:var(--on-wein);}
+.spread-ink .job-card .meta{color:var(--on-wein-muted);}
 
 /* Große, selbstbewusste Statement-Typografie: ersetzt Fließtext-Absätze
    an den Stellen, an denen die Aussage selbst der Blickfang sein soll. */
@@ -445,19 +445,19 @@ section .container p.section-lead:last-child{margin-bottom:0;}
 .value-row p{font-size:14.5px;line-height:1.6;color:var(--text-body);margin:0;max-width:60ch;}
 @media (max-width:640px){ .value-row{grid-template-columns:1fr;gap:4px;} }
 
-.tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--on-accent);background:var(--bordeaux);padding:6px 12px;border-radius:999px;margin-bottom:14px;}
+.tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--on-himbeere);background:var(--himbeere);padding:6px 12px;border-radius:999px;margin-bottom:14px;}
 .tag.outline{background:none;color:var(--accent);border:1.5px solid var(--accent);}
-.tag.gold{background:var(--gold);color:var(--ink);}
+.tag.gold{background:var(--gold);color:var(--on-gold);}
 
 /* Team */
 /* Vier Partner, vier Logofarben: statt eines einheitlichen grauen Randes
    trägt jede Karte oben den Farbton der jeweiligen Kachel aus der
-   Bildmarke — dieselbe Reihenfolge wie im Icon (Gold, Sand, Senf,
-   Bordeaux), nicht zufällig gewählt. */
+   Bildmarke — dieselbe Reihenfolge wie im Signet (Gold, Graualt,
+   Himbeere, Wein), nicht zufällig gewählt. */
 .person{border:1px solid var(--border);border-top:4px solid var(--gold);border-radius:var(--radius-md);overflow:hidden;background:var(--surface);}
-.person:nth-of-type(2){border-top-color:var(--sand);}
-.person:nth-of-type(3){border-top-color:var(--senf);}
-.person:nth-of-type(4){border-top-color:var(--bordeaux);}
+.person:nth-of-type(2){border-top-color:var(--graualt);}
+.person:nth-of-type(3){border-top-color:var(--himbeere);}
+.person:nth-of-type(4){border-top-color:var(--wein);}
 .person .p-body{padding:22px 22px 26px;}
 .person h3{margin:0 0 4px;font-size:16.5px;font-weight:800;}
 .person .role{font-size:12.5px;color:var(--accent);font-weight:700;margin-bottom:10px;}
@@ -501,29 +501,29 @@ form textarea{min-height:120px;resize:vertical;}
 .form-note{font-size:13.5px;line-height:1.55;color:var(--text-body);margin:14px 0 0;}
 
 /* Fakten-Kasten: eine kleine Nebeninfo (Öffnungszeiten, Adresse) braucht
-   keine vollflächige Tinte-Fläche in der Größe eines ganzen Spreads —
-   aber ein reines Papier-Kästchen war zu brav. Gold holt die Hauptfarbe
-   hier in einen kleinen, sparsamen Farbmoment statt einer grauen Ecke;
-   Bordeaux bleibt den Buttons als Eyecatcher vorbehalten. */
-.info-card{background:var(--gold);color:var(--ink);border-radius:var(--radius-tile);padding:32px;}
-.info-card h3{margin:0 0 4px;font-size:20px;color:var(--ink);font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:500;}
-.info-card .info-subtitle{margin:0 0 20px;font-size:12.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em;opacity:.85;}
-.info-card p{font-size:14px;line-height:1.7;color:var(--ink-soft);margin:0 0 18px;opacity:.9;}
-.info-card .line{display:block;font-size:14.5px;margin-bottom:10px;color:var(--ink);}
+   keine vollflächige Wein-Fläche in der Größe eines ganzen Spreads —
+   aber ein reines Papier-Kästchen war zu brav. Himbeere holt die
+   Hauptfarbe hier in einen kleinen, sparsamen Farbmoment statt einer
+   grauen Ecke; Gold bleibt Akzenten wie Badges vorbehalten. */
+.info-card{background:var(--himbeere);color:var(--on-himbeere);border-radius:var(--radius-tile);padding:32px;}
+.info-card h3{margin:0 0 4px;font-size:20px;color:var(--on-himbeere);font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:500;}
+.info-card .info-subtitle{margin:0 0 20px;font-size:12.5px;color:var(--on-himbeere-muted);text-transform:uppercase;letter-spacing:.05em;}
+.info-card p{font-size:14px;line-height:1.7;color:var(--on-himbeere-muted);margin:0 0 18px;}
+.info-card .line{display:block;font-size:14.5px;margin-bottom:10px;color:var(--on-himbeere);}
 @media (max-width:560px){ .info-card{padding:24px 22px;} }
 
 /* ---------- Footer ---------- */
-footer{background:var(--ink);color:var(--on-ink);padding:64px 24px 0;margin-top:auto;}
+footer{background:var(--wein);color:var(--on-wein);padding:64px 24px 0;margin-top:auto;}
 .footer-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:44px;}
 @media (max-width:768px){ .footer-inner{grid-template-columns:1fr;gap:30px;} }
 .footer-inner .f-logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:19px;margin-bottom:14px;color:#fff;}
 .footer-inner .f-logo .mark{width:16px;height:16px;display:inline-block;line-height:0;flex-shrink:0;}
 .footer-inner .f-logo .mark svg{width:100%;height:100%;display:block;}
-.footer-inner p{font-size:13.5px;line-height:1.6;color:var(--on-ink-muted);margin:0;}
-.footer-inner strong{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--on-ink-muted);display:block;margin-bottom:14px;font-weight:700;}
+.footer-inner p{font-size:13.5px;line-height:1.6;color:var(--on-wein-muted);margin:0;}
+.footer-inner strong{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--on-wein-muted);display:block;margin-bottom:14px;font-weight:700;}
 .footer-inner .contact-link{color:#fff;}
-.legal-bar{border-top:1px solid rgba(243,239,232,.12);padding:20px 0;font-size:12px;color:var(--on-ink-muted);max-width:1180px;margin:0 auto;display:flex;gap:20px;flex-wrap:wrap;}
-.legal-bar a{color:var(--on-ink-muted);transition:color .2s ease;}
+.legal-bar{border-top:1px solid rgba(240,236,225,.12);padding:20px 0;font-size:12px;color:var(--on-wein-muted);max-width:1180px;margin:0 auto;display:flex;gap:20px;flex-wrap:wrap;}
+.legal-bar a{color:var(--on-wein-muted);transition:color .2s ease;}
 .legal-bar a:hover{color:#fff;}
 
 .contact-link{transition:opacity .2s ease;}
@@ -560,9 +560,9 @@ footer{background:var(--ink);color:var(--on-ink);padding:64px 24px 0;margin-top:
 .legal-content h2:first-child{margin-top:0;}
 .legal-content p,.legal-content li{font-size:14.5px;line-height:1.7;color:var(--text-body);margin:0 0 12px;}
 .legal-content ul{padding-left:20px;}
-.legal-content .fill{background:rgba(169,130,46,.18);padding:1px 6px;border-radius:var(--radius-sm);color:#6B4A12;font-weight:600;}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .legal-content .fill{color:var(--sand);}}
-:root[data-theme="dark"] .legal-content .fill{color:var(--sand);}
+.legal-content .fill{background:rgba(217,164,65,.18);padding:1px 6px;border-radius:var(--radius-sm);color:#6B4A12;font-weight:600;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .legal-content .fill{color:var(--gold);}}
+:root[data-theme="dark"] .legal-content .fill{color:var(--gold);}
 .legal-content a{color:var(--accent);text-decoration:underline;}
 .lang-notice{color:var(--text-muted);font-style:italic;font-size:13.5px;line-height:1.6;border-left:2px solid var(--border-strong);padding-left:14px;margin:0 0 28px;}
 .lang-notice a{color:var(--accent);text-decoration:underline;font-style:normal;}
