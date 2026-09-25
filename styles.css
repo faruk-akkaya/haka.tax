@@ -1,12 +1,18 @@
 /* haka.tax — Editorial-Rebrand.
-   Vierte Fassung: offizielles Markensystem (haka-tax-logo/PROMPT-
-   Markenumstellung.md). Himbeere ist die Hauptfarbe (Primär-Buttons,
-   Links, Überschriften-Akzent). Wein ist ihre Zweitfarbe: Hover/Aktiv
-   von Himbeere UND die Farbe der dunklen Flächen (Footer, dunkle
-   Spreads) — ersetzt das frühere neutrale Tinte-Schwarz dort. Gold ist
-   reiner Akzent (Badges, Icons, Hervorhebungen), nie Fläche für
-   Fließtext — Gold auf Weiß verfehlt WCAG AA als Textfarbe. Warmgrau
-   (Graualt) ist die ruhige Sekundärfarbe für Linien und Meta-Text. */
+   Fünfte Fassung: finales, freigegebenes Markenzeichen (vier Pfeile,
+   die zur Mitte zeigen — je einer für Hechtel, Albert, Kemnitzer,
+   Akkaya) ersetzt das frühere 2×2-Signet aus gerundeten/gefasten
+   Blöcken vollständig. Die vier Markenfarben selbst ändern sich nicht:
+   Himbeere ist weiterhin die Hauptfarbe (Primär-Buttons, Links,
+   Überschriften-Akzent). Wein ist ihre Zweitfarbe: Hover/Aktiv von
+   Himbeere UND die Farbe der dunklen Flächen (Footer, dunkle Spreads).
+   Gold ist reiner Akzent (Badges, Icons, Hervorhebungen), nie Fläche
+   für Fließtext — Gold auf Weiß verfehlt WCAG AA als Textfarbe.
+   Warmgrau (Graualt) ist die ruhige Sekundärfarbe für Linien und
+   Meta-Text. Das neue Zeichen besteht nur aus geraden Kanten (keine
+   Rundung, keine Fasung mehr) — die frühere, vom alten Signet
+   abgeleitete gefaste Kachelform (--radius-tile) entfällt deshalb
+   zugunsten eines schlichten, durchgängigen Radius. */
 
 @font-face{
   font-family:'Bricolage';
@@ -46,17 +52,14 @@
   --on-wein-muted:#C3ABAC;
   --on-gold:#211E19;
 
-  /* Radius-Skala, abgeleitet aus der neuen Bildmarke: die vier Kacheln
-     sind weich gerundet statt eckig, das darf sich im UI wiederfinden
-     statt bei 2px Editorial-Schärfe zu bleiben. */
   --radius-sm:10px;
   --radius-md:18px;
-  /* Jede Logokachel rundet ihre äußere Ecke, die innere ist gefast statt
-     rechtwinklig — dieselbe Formel (eine große, eine kleine gefaste
-     Ecke) als wiederkehrende Form auf großen Blockflächen (Info-Kachel,
-     Bildplatzhalter) statt eines beliebigen eigenen Radius. */
-  --radius-tile: 24px 4px 24px 4px;
-  --radius-tile-sm: 14px 3px 14px 3px;
+  /* Das neue Zeichen besteht nur aus geraden Kanten — keine Rundung,
+     keine Fasung. Große Blockflächen (Info-Kachel, Bildplatzhalter)
+     bekommen deshalb einen schlichten, durchgängigen Radius statt der
+     früheren, vom alten Signet abgeleiteten gefasten Eckform. */
+  --radius-tile: 20px;
+  --radius-tile-sm: 14px;
 
   /* Theme-Tokens: passen sich zwischen hell/dunkel an. Tinte/Papier/
      Papier-2 aus dem Markensystem — warmes Creme statt kühlem Grau. */
@@ -69,9 +72,10 @@
   --border:#E4E4E3;
   --border-strong:#CECECC;
   /* --accent ist Himbeere selbst (Hauptfarbe: Buttons, Links,
-     Überschriften-Akzent). Im Dark Mode ein leicht aufgehellter
-     Himbeere-Ton für Textkontrast — die reine Dark-Grund-Logofarbe
-     (#C43A72) läge auf Papier-Dunkel nur bei 3,6:1. */
+     Überschriften-Akzent). Im Dark Mode die offizielle aufgehellte
+     Himbeere-Fassung (#CD8FA9, Teil des Markensystems) — die liegt auf
+     Papier-Dunkel bereits bei 6,9:1, eine zusätzliche eigene Ableitung
+     ist damit nicht mehr nötig. */
   --accent:#9B1E52;
   --focus-ring:rgba(155,30,82,.35);
   --shadow-color:33,30,25;
@@ -87,8 +91,8 @@
     --text-muted:#97938B;
     --border:#3B3733;
     --border-strong:#504C47;
-    --accent:#CF5D8B;
-    --focus-ring:rgba(207,93,139,.4);
+    --accent:#CD8FA9;
+    --focus-ring:rgba(205,143,169,.4);
     --shadow-color:0,0,0;
   }
 }
@@ -101,8 +105,8 @@
   --text-muted:#97938B;
   --border:#3B3733;
   --border-strong:#504C47;
-  --accent:#CF5D8B;
-  --focus-ring:rgba(207,93,139,.4);
+  --accent:#CD8FA9;
+  --focus-ring:rgba(205,143,169,.4);
   --shadow-color:0,0,0;
 }
 
@@ -162,17 +166,21 @@ header.scrolled{box-shadow:0 6px 20px rgba(var(--shadow-color),.06);}
    Titelzeile verschwindet, die schmale Nav bleibt stehen. */
 .nav-inner{max-width:1180px;margin:0 auto;padding:18px 24px 14px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;}
 .logo{
-  flex:0 0 100%;font-weight:800;font-size:28px;display:flex;align-items:center;justify-content:center;gap:10px;
+  --lockup-h:22px;
+  flex:0 0 100%;font-weight:800;font-size:28px;display:flex;align-items:baseline;justify-content:center;gap:0;
   letter-spacing:-0.02em;padding-bottom:16px;margin-bottom:2px;border-bottom:1px solid var(--border);
   max-height:70px;overflow:hidden;
-  transition:max-height .4s cubic-bezier(.23,1,.32,1), opacity .3s ease, padding .4s cubic-bezier(.23,1,.32,1), margin .4s ease, border-color .3s ease;
+  transition:max-height .4s cubic-bezier(.23,1,.32,1), opacity .3s ease, padding .4s cubic-bezier(.23,1,.32,1), margin .4s ease, border-color .3s ease, opacity .2s ease;
 }
 header.scrolled .logo{max-height:0;opacity:0;padding-bottom:0;margin-bottom:0;border-bottom-color:transparent;pointer-events:none;}
-.logo .mark{width:22px;height:22px;display:inline-block;line-height:0;flex-shrink:0;}
-.logo .mark svg{width:100%;height:100%;display:block;transition:transform .4s cubic-bezier(.23,1,.32,1);}
-.logo:hover .mark svg{transform:rotate(90deg);}
+.logo .mark{width:var(--lockup-h);height:var(--lockup-h);display:inline-block;overflow:hidden;line-height:0;flex-shrink:0;}
+.logo .mark svg{width:100%;height:100%;display:block;}
+/* Das Zeichen darf laut Markenvorgabe nicht gedreht werden — Rotation
+   würde die feste Farbposition der vier Pfeile vertauschen. Der Hover
+   liegt deshalb auf dem gesamten Lockup statt auf der Bildmarke. */
+.logo:hover{opacity:.78;}
 /* Header-Grund wechselt mit dem Theme (Papier hell/dunkel) — deshalb hier,
-   anders als im immer dunklen Footer, zwei Signet-Fassungen, die genau wie
+   anders als im immer dunklen Footer, zwei Zeichen-Fassungen, die genau wie
    das Sonne/Mond-Icon des Theme-Togglers umgeschaltet werden. Die helle
    Fassung gehört nie auf dunklen Grund und umgekehrt. */
 .logo .mark .mark-dark{display:none;}
@@ -182,7 +190,18 @@ header.scrolled .logo{max-height:0;opacity:0;padding-bottom:0;margin-bottom:0;bo
   :root:not([data-theme="light"]) .logo .mark .mark-light{display:none;}
   :root:not([data-theme="light"]) .logo .mark .mark-dark{display:block;}
 }
-.wm{font-family:'Inter','Segoe UI',system-ui,-apple-system,Arial,sans-serif;font-weight:600;letter-spacing:-0.01em;white-space:nowrap;}
+/* Trennstrich der Kombi-Form "Icon | haka.tax" — Maße proportional zur
+   Icon-Höhe, nach den Verhältnissen der gelieferten Lockup-Master:
+   Abstand beidseits 0,216 × H, Breite 0,034 × H, Höhe = H. */
+.lockup-bar{
+  display:inline-block;overflow:hidden;
+  width:max(1px, calc(var(--lockup-h) * 0.034));
+  height:var(--lockup-h);
+  margin:0 calc(var(--lockup-h) * 0.216);
+  background:currentColor;
+  flex-shrink:0;
+}
+.wm{font-family:'Inter','Segoe UI',system-ui,-apple-system,Arial,sans-serif;font-weight:400;letter-spacing:-0.01em;white-space:nowrap;}
 .header-actions{margin-left:auto;}
 
 nav.main-nav{display:flex;gap:30px;font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;align-items:center;}
@@ -516,9 +535,10 @@ form textarea{min-height:120px;resize:vertical;}
 footer{background:var(--wein);color:var(--on-wein);padding:64px 24px 0;margin-top:auto;}
 .footer-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:44px;}
 @media (max-width:768px){ .footer-inner{grid-template-columns:1fr;gap:30px;} }
-.footer-inner .f-logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:19px;margin-bottom:14px;color:#fff;}
-.footer-inner .f-logo .mark{width:16px;height:16px;display:inline-block;line-height:0;flex-shrink:0;}
+.footer-inner .f-logo{--lockup-h:16px;display:flex;align-items:baseline;gap:0;font-weight:800;font-size:19px;margin-bottom:14px;color:#fff;}
+.footer-inner .f-logo .mark{width:var(--lockup-h);height:var(--lockup-h);display:inline-block;overflow:hidden;line-height:0;flex-shrink:0;}
 .footer-inner .f-logo .mark svg{width:100%;height:100%;display:block;}
+.footer-inner .f-logo .wm{font-weight:400;}
 .footer-inner p{font-size:13.5px;line-height:1.6;color:var(--on-wein-muted);margin:0;}
 .footer-inner strong{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--on-wein-muted);display:block;margin-bottom:14px;font-weight:700;}
 .footer-inner .contact-link{color:#fff;}
@@ -538,7 +558,7 @@ footer{background:var(--wein);color:var(--on-wein);padding:64px 24px 0;margin-to
 }
 .ph::before{
   content:"";position:absolute;inset:10px;border:1.5px dashed var(--border-strong);pointer-events:none;
-  border-radius:14px 2px 26px 2px;
+  border-radius:var(--radius-tile-sm);
 }
 .ph-nr{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-bottom:6px;}
 .ph-titel{font-size:15px;font-weight:800;color:var(--text);margin-bottom:6px;}
